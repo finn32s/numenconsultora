@@ -55,17 +55,30 @@
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
-            text-decoration: none;
-            letter-spacing: -0.5px;
-            transition: all 0.3s ease;
-        }
+			font-size: 2.2rem;
+			font-weight: 700;
+			color: white;
+			text-decoration: none;
+			letter-spacing: -0.5px;
+			transition: all 0.3s ease;
+			
+			/* Flexbox para alinear el ícono y el texto perfectamente al centro */
+			display: inline-flex;
+			align-items: center;
+			gap: 1px; /* Espacio de separación entre el ícono y la palabra Numen */
+		}
 
+		.logo-img {
+			height: 38px; /* Tamaño ideal y estético para la barra de navegación */
+			width: auto;  /* Mantiene la proporción correcta del ícono */
+			object-fit: contain;
+			transition: transform 0.3s ease;
+			margin-right: -15px;
+		}
+		
         .logo:hover {
             color: var(--secondary-color);
-            transform: scale(1.05);
+            transform: scale(1.03); /* Un escalado sutil para que no se mueva bruscamente */
         }
 
         .logo span {
@@ -449,6 +462,40 @@
             padding: 2rem;
             box-shadow: 0 10px 30px rgba(26, 58, 82, 0.3);
         }
+		
+		.logo-contenedor {
+            position: relative;
+            width: 400px;
+			border-radius: 12px;
+            height: 400px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000; /* Fondo negro por si la imagen tarda en cargar */
+        }
+
+        .imagen-fondo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Hace que la imagen llene el cuadrado sin deformarse */
+            opacity: 0.4;      /* Opacidad al 50%. Si la quieres más clara, bájalo a 0.3 o 0.4 */
+            z-index: 1;
+        }
+
+        .texto-encima {
+            text-align: center;
+            z-index: 2;         /* Obliga al texto a estar POR ENCIMA de la imagen */
+            color: #ffffff;     /* Color blanco original */
+            font-size: 20px;   /* Tamaño de letra original */
+            font-family: sans-serif; /* Puedes cambiar la tipografía aquí */
+            font-weight: bold;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Sombra negra para que resalte aún más */
+            pointer-events: none; /* Evita que el texto interfiera con clicks */
+        }
 
         /* ==================== TESTIMONIOS ==================== */
         .testimonials {
@@ -672,7 +719,16 @@
             .section-header h2 {
                 font-size: 2rem;
             }
+			
+			.logo {
+				font-size: 1.9rem; /* Achicamos un poco la letra en celulares y tablets */
+				gap: 1px;          /* Reducimos ligeramente el espacio */
+			}
 
+			.logo-img {
+				height: 68px; /* El ícono se adapta para no ocupar toda la pantalla en móviles */
+			}
+			
             nav {
                 display: none;
                 position: absolute;
@@ -725,8 +781,12 @@
             }
 
             .logo {
-                font-size: 1.4rem;
+                font-size: 1.6rem;
             }
+			
+			.logo-img {
+				height: 48px; /* El ícono se adapta para no ocupar toda la pantalla en móviles */
+			}
 
             .hero {
                 padding: 4rem 1rem;
@@ -790,7 +850,29 @@
 </head>
 <body>
     <!-- HEADER -->
-    <header>
+	<header>
+		<div class="header-container">
+			<a href="#" class="logo">
+				<img src="https://numenconsultora.com/wp-content/uploads/2025/07/ChatGPT-Image-24-jul-2025-09_55_03.png" alt="Logo Numen" class="logo-img">
+				Numen<span>.</span>
+			</a>
+			<button class="menu-toggle" id="menuToggle">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+			<nav id="navMenu">
+				<a href="#inicio">Inicio</a>
+				<a href="#servicios">Servicios</a>
+				<a href="#nosotros">Nosotros</a>
+				<a href="#testimonios">Testimonios</a>
+				<a href="#contacto" class="nav-btn">Contacto</a>
+			</nav>
+		</div>
+	</header>
+	
+	
+    <!--  <header>
         <div class="header-container">
             <a href="#" class="logo">Numen<span>.</span></a>
             <button class="menu-toggle" id="menuToggle">
@@ -806,7 +888,7 @@
                 <a href="#contacto" class="nav-btn">Contacto</a>
             </nav>
         </div>
-    </header>
+    </header> --> 
 
     <!-- HERO SECTION -->
     <section class="hero" id="inicio">
@@ -875,7 +957,7 @@
     <section class="about" id="nosotros">
         <div class="about-content">
             <h2>¿Por qué elegirnos?</h2>
-            <p>Con más de 15 años de experiencia en consultoría empresarial, Numen ha acompañado a cientos de empresas en su transformación y crecimiento.</p>
+            <p>Con más de 5 años de experiencia en consultoría empresarial, Numen ha acompañado a cientos de empresas en su transformación y crecimiento.</p>
             <p>Nuestro equipo de expertos combina conocimiento profundo del mercado con metodologías innovadoras para entregar resultados tangibles y medibles.</p>
             
             <div class="about-features">
@@ -883,7 +965,7 @@
                     <div class="feature-icon">✓</div>
                     <div>
                         <h4>Expertos Certificados</h4>
-                        <p>Profesionales con certificaciones internacionales</p>
+                        <p>Profesionales con certificaciones nacionales</p>
                     </div>
                 </div>
 
@@ -891,7 +973,7 @@
                     <div class="feature-icon">✓</div>
                     <div>
                         <h4>Resultados Comprobados</h4>
-                        <p>+300 empresas transformadas con éxito</p>
+                        <p>+50 empresas transformadas con éxito</p>
                     </div>
                 </div>
 
@@ -912,8 +994,12 @@
                 </div>
             </div>
         </div>
-        <div class="about-image">
-            🚀 <br>Tu crecimiento es nuestro éxito
+        <div class="logo-contenedor">
+			<!-- La imagen de fondo -->
+			<img src="https://numenconsultora.com/wp-content/uploads/2025/07/administracion_blog_tc01.jpg" alt="Fondo Nosotros" class="imagen-fondo">
+			
+			<!-- El texto con el icono encima -->
+                <div class="texto-encima">🚀 Tu crecimiento es nuestro éxito 🚀</div>
         </div>
     </section>
 
@@ -928,21 +1014,21 @@
                 <div class="stars">★★★★★</div>
                 <p class="testimonial-text">"Numen transformó completamente nuestra estrategia empresarial. En 6 meses vimos aumentar nuestras ganancias en 40%."</p>
                 <div class="testimonial-author">Juan Rodríguez</div>
-                <div class="testimonial-role">CEO, Tecnova S.A.</div>
+                <div class="testimonial-role">CEO, Empresa Confidelcial</div>
             </div>
 
             <div class="testimonial-card fade-in">
                 <div class="stars">★★★★★</div>
                 <p class="testimonial-text">"El equipo de Numen nos ayudó a optimizar nuestros procesos. Ahora somos mucho más eficientes y rentables."</p>
                 <div class="testimonial-author">María González</div>
-                <div class="testimonial-role">Gerente General, Logística Plus</div>
+                <div class="testimonial-role">Gerente General, Empresa Confidelcial</div>
             </div>
 
             <div class="testimonial-card fade-in">
                 <div class="stars">★★★★★</div>
                 <p class="testimonial-text">"Excelente servicio, profesionales muy preparados. Recomendamos ampliamente los servicios de Numen."</p>
                 <div class="testimonial-author">Carlos Mendez</div>
-                <div class="testimonial-role">Director Financiero, Inversiones Global</div>
+                <div class="testimonial-role">Director Financiero, Empresa Confidelcial</div>
             </div>
         </div>
     </section>
@@ -1005,10 +1091,8 @@
                 <h4>Numen Consultora</h4>
                 <p>Transformando empresas, generando valor. Tu socio estratégico en el crecimiento empresarial.</p>
                 <div class="social-links">
-                    <a href="https://wa.me/59521234567" title="WhatsApp">📱</a>
-                    <a href="https://instagram.com" title="Instagram">📷</a>
-                    <a href="https://facebook.com" title="Facebook">f</a>
-                    <a href="https://linkedin.com" title="LinkedIn">in</a>
+                    <a href="https://wa.me/595992245624?text=Hola%20vengo%20desde%20la%20pagina%20web%20de%20numen%20consultora%20y%20tengo%20unas%20preguntas." title="WhatsApp" target="_blank" rel="noopener noreferrer">📱</a>
+                    <a href="https://www.instagram.com/numen_consultora/" title="Instagram">📷</a>
                 </div>
             </div>
 
@@ -1025,21 +1109,22 @@
 
             <div class="footer-section">
                 <h4>Contacto</h4>
-                <p>📧 <a href="mailto:info@numenconsultora.com" style="color: inherit; text-decoration: none;">info@numenconsultora.com</a></p>
-                <p>📞 <a href="tel:+59521234567" style="color: inherit; text-decoration: none;">+595 21 234 567</a></p>
+                <p>📧 <a href="mailto:sac@numenconsultora.com" style="color: inherit; text-decoration: none;">sac@numenconsultora.com</a></p>
+                <p>📞 <a href="https://wa.me/595992245624?text=Hola%20vengo%20desde%20la%20pagina%20web%20de%20numen%20consultora%20y%20tengo%20unas%20preguntas." target="_blank" style="color: inherit; text-decoration: none;">+595 992 245 624</a></p>
+				<p>📞 <a href="https://wa.me/+595984570898?text=Hola%20vengo%20desde%20la%20pagina%20web%20de%20numen%20consultora%20y%20tengo%20unas%20preguntas.‬" target="_blank" style="color: inherit; text-decoration: none;">+595 984 570 898‬‬</a></p>
                 <p>📍 Asunción, Paraguay</p>
             </div>
 
             <div class="footer-section">
                 <h4>Horario de Atención</h4>
                 <p>Lunes a Viernes: 8:00 - 18:00</p>
-                <p>Sábados: 9:00 - 13:00</p>
+                <p>Sábados: 9:00 - 12:00</p>
                 <p>Domingos: Cerrado</p>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2024 Numen Consultora. Todos los derechos reservados. | <a href="#" style="color: inherit;">Política de Privacidad</a></p>
+            <p>&copy; 2026 Numen Consultora. Todos los derechos reservados. | <a href="#" style="color: inherit;">Política de Privacidad</a></p>
         </div>
     </footer>
 
@@ -1097,7 +1182,7 @@
             const whatsappMessage = `Hola Numen Consultora, soy ${nombre} de ${empresa}. Me gustaría consultar sobre ${servicio}. Mi email es ${email} y mi teléfono es ${telefono}. Comentario adicional: ${mensaje}`;
             
             // Enviar por WhatsApp (reemplaza el número)
-            const whatsappURL = `https://wa.me/59521234567?text=${encodeURIComponent(whatsappMessage)}`;
+            const whatsappURL = `https://wa.me/595992245624?text=${encodeURIComponent(whatsappMessage)}`;
             window.open(whatsappURL, '_blank');
 
             // Alternativa: Enviar email
